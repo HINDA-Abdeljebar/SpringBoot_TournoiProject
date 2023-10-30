@@ -12,6 +12,7 @@ import java.util.List;
 public interface JoueurRepository extends JpaRepository<Joueur, Long> {
     // Récupérer tous les joueurs de l’équipe par son nom
     List<Joueur> findByEquipeNomEquipe(String nom);
+    // Récupérer tous les joueurs de l’équipe par son nom and poste
     List<Joueur> findByEquipeNomEquipeAndPoste(String nom , String post);
 
 

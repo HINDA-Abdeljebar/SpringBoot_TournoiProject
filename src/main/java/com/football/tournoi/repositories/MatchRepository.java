@@ -7,13 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
-    List<Match> findByDateMatch(Date date); //Pour récupérer toutes les matches d'une date donnée.
-    void deleteByDateMatchLessThanAndHeureMatchLessThan(Date date, Time heure);
+    List<Match> findByDateMatch(LocalDate date); //Pour récupérer toutes les matches d'une date donnée.
+    void deleteByDateMatchLessThanAndHeureMatchLessThan(LocalDate date, LocalTime heure);
 
 
 

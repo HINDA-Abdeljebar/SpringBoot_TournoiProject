@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -30,23 +32,25 @@ public class MatchController {
     public void deleteMatch(@PathVariable Long id){
          matchRepository.deleteById(id);
     }
+
     @GetMapping("match/{id}")
     public Match getMatchById(@PathVariable Long id) {
         return matchRepository.findById(id).get();
     }
 
+
+    // get by match Date
     @GetMapping("match/date/{date}")
-    public List<Match> getMatchByDate(@PathVariable Date date) {
-
-        return matchRepository.findByDateMatch(date);
+    public List<Match> getMatchByDate(@PathVariable String date) {
+        LocalDate localDate = LocalDate.parse(date) ;
+        return matchRepository.findByDateMatch(localDate);
     }
+
+    // delete matches already palyed
     @DeleteMapping("match/date")
-    void deleteByDateMatchLessThanAndHeureMatchLessThan(Date date, Time heure){
-//        matchRepository.deleteByDateMatchLessThanAndHeureMatchLessThan();
+    void deleteByDateMatchLessThanAndHeureMatchLessThan(){
+    matchRepository.deleteByDateMatchLessThanAndHeureMatchLessThan(LocalDate.now() , LocalTime.now());
 
     }
-
-
-
 
 }

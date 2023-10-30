@@ -1,13 +1,12 @@
 package com.football.tournoi.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Data
@@ -17,8 +16,8 @@ import java.util.*;
 public class Match {
     @Id
     Long idMatch ;
-    Date dateMatch ;
-    Time heureMatch ;
+    LocalDate dateMatch ;
+    LocalTime heureMatch ;
     @ManyToOne
     @JoinColumn(name = "arbitre_id")
     Arbitre arbitre ;
