@@ -17,7 +17,7 @@ import java.util.*;
 public class Match {
     @Id
     Long idMatch ;
-    Date dataMatch ;
+    Date dateMatch ;
     Time heureMatch ;
     @ManyToOne
     @JoinColumn(name = "arbitre_id")

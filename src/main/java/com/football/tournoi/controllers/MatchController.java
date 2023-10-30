@@ -6,6 +6,8 @@ import com.football.tournoi.repositories.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -32,6 +34,19 @@ public class MatchController {
     public Match getMatchById(@PathVariable Long id) {
         return matchRepository.findById(id).get();
     }
+
+    @GetMapping("match/date/{date}")
+    public List<Match> getMatchByDate(@PathVariable Date date) {
+
+        return matchRepository.findByDateMatch(date);
+    }
+    @DeleteMapping("match/date")
+    void deleteByDateMatchLessThanAndHeureMatchLessThan(Date date, Time heure){
+//        matchRepository.deleteByDateMatchLessThanAndHeureMatchLessThan();
+
+    }
+
+
 
 
 }

@@ -16,7 +16,7 @@ public class JoueurController {
     JoueurRepository joueurRepository;
 
     @GetMapping("joueur")
-    public List<Joueur> getAllJoueures() {
+    public List<Joueur> getAllJoueurs() {
         return joueurRepository.findAll();
     }
     @PostMapping("joueur")
@@ -31,6 +31,15 @@ public class JoueurController {
     @GetMapping("joueur/{id}")
     public Joueur getJoueurById(@PathVariable Long id) {
         return joueurRepository.findById(id).get();
+    }
+
+    @GetMapping("joueur/equipe/{nom}")
+    public List<Joueur> getJoueurByNomEquipe(@PathVariable String nom) {
+        return joueurRepository.findByEquipeNomEquipe(nom);
+    }
+    @GetMapping("joueur/equipe/{nom}/{poste}")
+    public List<Joueur> getJoueurByNomEquipeAndPost(@PathVariable String nom , @PathVariable String poste) {
+        return joueurRepository.findByEquipeNomEquipeAndPoste(nom,poste);
     }
 
 }

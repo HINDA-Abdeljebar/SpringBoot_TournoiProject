@@ -32,5 +32,13 @@ public class EquipeController {
     public Equipe getEquipeById(@PathVariable Long id) {
         return equipeRepository.findById(id).get();
     }
+    @GetMapping("equipe/pays/{pays}")
+    public List<Equipe> getEquipeByPays(@PathVariable String pays) {
+        return equipeRepository.findByPays(pays);
+    }
+    @GetMapping("equipe/match/{id}")
+    public List<Equipe> getEquipesBymatchId(@PathVariable Long id) {
+        return equipeRepository.findByMatchesIdMatch(id);
+    }
 
 }

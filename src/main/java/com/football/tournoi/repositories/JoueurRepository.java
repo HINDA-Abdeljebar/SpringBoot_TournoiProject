@@ -8,9 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+
 public interface JoueurRepository extends JpaRepository<Joueur, Long> {
     // Récupérer tous les joueurs de l’équipe par son nom
-    List<Joueur> findByEquipeNomequipe(String nomEquipe);
+    List<Joueur> findByEquipeNomEquipe(String nom);
+    List<Joueur> findByEquipeNomEquipeAndPoste(String nom , String post);
+
+
 
 
 }

@@ -38,7 +38,7 @@ public class StadeController {
     }
 
     // get Stade by Match Id
-    @GetMapping("stade/{id}/match")
+    @GetMapping("stade/match/{id}")
     public Stade getStadeByMatchId(@PathVariable Long id){
         Match match = matchRepository.findById(id).get();
         Stade stadeDuMatch = match.getStade();

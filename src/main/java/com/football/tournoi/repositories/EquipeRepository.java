@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface EquipeRepository extends JpaRepository<Equipe, Long> {
     List<Equipe> findByPays(String nom); //Pour récupérer toutes les équipes d'un pays données
+    List<Equipe> findByMatchesIdMatch(Long id); //Pour récupérer les deux équipes d'un match
+
 }
