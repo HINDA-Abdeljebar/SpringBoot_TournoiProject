@@ -2,8 +2,10 @@ package com.football.tournoi.controllers;
 
 
 import com.football.tournoi.entities.Match;
-import com.football.tournoi.repositories.MatchRepository;
+import com.football.tournoi.services.MatchService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
@@ -17,39 +19,38 @@ import java.util.List;
 public class MatchController {
 
     @Autowired
-    MatchRepository matchRepository;
+    MatchService matchService;
 
     @GetMapping("match")
     public List<Match> getAllMatches() {
-        return matchRepository.findAll();
+        return matchService.getAllMatches();
     }
     @PostMapping("match")
     public Match addMatch(@RequestBody Match match){
-        return matchRepository.save(match);
+        return matchService.addMatch(match);
     }
 
     @DeleteMapping("match/{id}")
     public void deleteMatch(@PathVariable Long id){
-         matchRepository.deleteById(id);
+         matchService.deleteMatch(id);
     }
 
     @GetMapping("match/{id}")
     public Match getMatchById(@PathVariable Long id) {
-        return matchRepository.findById(id).get();
+        return matchService.getMatchById(id);
     }
 
 
     // get by match Date
     @GetMapping("match/date/{date}")
     public List<Match> getMatchByDate(@PathVariable String date) {
-        LocalDate localDate = LocalDate.parse(date) ;
-        return matchRepository.findByDateMatch(localDate);
+        return matchService.getMatchByDate(date);
     }
 
-    // delete matches already palyed
+    // Supprimer tous les matchs déjà passés
     @DeleteMapping("match/date")
-    void deleteByDateMatchLessThanAndHeureMatchLessThan(){
-    matchRepository.deleteByDateMatchLessThanAndHeureMatchLessThan(LocalDate.now() , LocalTime.now());
+    void deleteByDateMatchLessThanCurrentDate(){
+        matchService.deleteByDateMatchLessThanCurrentDate() ;
 
     }
 

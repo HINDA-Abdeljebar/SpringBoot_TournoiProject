@@ -2,7 +2,7 @@ package com.football.tournoi.controllers;
 
 
 import com.football.tournoi.entities.Joueur;
-import com.football.tournoi.repositories.JoueurRepository;
+import com.football.tournoi.services.JoueurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,33 +13,33 @@ import java.util.List;
 public class JoueurController {
 
     @Autowired
-    JoueurRepository joueurRepository;
+    JoueurService joueurService;
 
     @GetMapping("joueur")
     public List<Joueur> getAllJoueurs() {
-        return joueurRepository.findAll();
+        return joueurService.getAllJoueures();
     }
     @PostMapping("joueur")
     public Joueur addJoueur(@RequestBody Joueur joueur){
-        return joueurRepository.save(joueur);
+        return joueurService.addJoueur(joueur);
     }
 
     @DeleteMapping("joueur/{id}")
     public void deleteJoueur(@PathVariable Long id){
-         joueurRepository.deleteById(id);
+         joueurService.deleteJoueur(id);
     }
     @GetMapping("joueur/{id}")
     public Joueur getJoueurById(@PathVariable Long id) {
-        return joueurRepository.findById(id).get();
+        return joueurService.getJoueurById(id);
     }
 
     @GetMapping("joueur/equipe/{nom}")
     public List<Joueur> getJoueurByNomEquipe(@PathVariable String nom) {
-        return joueurRepository.findByEquipeNomEquipe(nom);
+        return joueurService.getJoueurByNomEquipe(nom);
     }
     @GetMapping("joueur/equipe/{nom}/{poste}")
     public List<Joueur> getJoueurByNomEquipeAndPost(@PathVariable String nom , @PathVariable String poste) {
-        return joueurRepository.findByEquipeNomEquipeAndPoste(nom,poste);
+        return joueurService.getJoueurByNomEquipeAndPost(nom,poste);
     }
 
 }

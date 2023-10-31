@@ -14,9 +14,8 @@ import java.util.List;
 
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
-    List<Match> findByDateMatch(LocalDate date); //Pour récupérer toutes les matches d'une date donnée.
-    void deleteByDateMatchLessThanAndHeureMatchLessThan(LocalDate date, LocalTime heure);
-
+    List<Match> findByDateMatch(LocalDate date); // Pour récupérer toutes les matches d'une date donnée.
+    void deleteByDateMatchLessThan(LocalDate date);  // Supprimer tous les matchs déjà passés.
 
 
 }
